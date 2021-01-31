@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet,
   Text,
+  TouchableOpacity,
 } from 'react-native'
 
 const { width } = Dimensions.get('window')
@@ -23,9 +24,14 @@ const ITEM_SPACING = width / 21
 interface AgeSliderProps {
   max?: number
   min?: number
+  onContinuePressed: (value: number) => void
 }
 
-export default function App({ max = 80, min = 0 }: AgeSliderProps) {
+const AgeSlider: React.FC<AgeSliderProps> = ({
+  max = 80,
+  min = 0,
+  onContinuePressed,
+}) => {
   const scaleArray = React.useMemo(
     () => new Array(max - min + 21).fill(min).map((i, index) => index),
     [min, max]
@@ -139,15 +145,29 @@ export default function App({ max = 80, min = 0 }: AgeSliderProps) {
               </Text>
             ) : null}
           </Animated.View>
-        )}></Animated.FlatList>
+        )}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          if (!isNaN(parseInt(value, 10))) {
+            onContinuePressed(parseInt(value, 10))
+          }
+        }}>
+        <Text style={styles.buttonText}>Continue</Text>
+      </TouchableOpacity>
     </View>
   )
 }
+
+AgeSlider.displayName = 'Age-Slider'
+export default AgeSlider
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.back,
     alignItems: 'center',
+    flex: 1,
   },
   bubble: {
     width: 120,
@@ -257,9 +277,15 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   button: {
-     justifyContent: 'center',
-     alignItems: 'center',
-     width: width * 4/7
-     
-  }
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: (width * 2) / 3,
+    height: width / 8,
+    borderRadius: width / 8,
+    backgroundColor: colors.line,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+  },
 })

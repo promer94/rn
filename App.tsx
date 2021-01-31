@@ -1,18 +1,22 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { SafeAreaView, StyleSheet, View } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Alert } from 'react-native'
 import AgeSlider from './AgeSlider'
 import Header from './Header'
 import Lable from './Lable'
 
 export default function App() {
+  const onpress = (value: number) => {
+    Alert.alert('Your age is', value.toString())
+  }
   return (
     <View style={styles.container}>
       <StatusBar />
-      <SafeAreaView></SafeAreaView>
-      <Header></Header>
-      <Lable></Lable>
-      <AgeSlider />
+      <SafeAreaView>
+        <Header></Header>
+        <Lable></Lable>
+        <AgeSlider onContinuePressed={onpress} />
+      </SafeAreaView>
     </View>
   )
 }
