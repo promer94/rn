@@ -1,14 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
+import AgeSlider from './AgeSlider'
+import Header from './Header'
+import Lable from './Lable'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <StatusBar />
+      <SafeAreaView></SafeAreaView>
+      <Header></Header>
+      <Lable></Lable>
+      <AgeSlider />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -16,6 +22,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
-});
+})
