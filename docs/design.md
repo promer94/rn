@@ -33,7 +33,7 @@
 
 - [x] using a textinput for number, so user could change input it directly and it would be more accessible.
 
-- [] When scroll the ruler, it could have some taptic and sound feedbacks (can't do it in react-native)
+- [ ] When scroll the ruler, it could have some taptic and sound feedbacks (can't do it in react-native)
 
 ## TL;DR
 
